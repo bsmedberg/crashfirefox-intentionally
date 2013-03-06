@@ -1,0 +1,17 @@
+# build products
+Debug
+Release
+
+# Backup files
+*~
+
+# Developer-specific Studio file
+*.suo
+*.vcxproj.filters
+*.vcxproj.user
+
+# Intellisense Database
+*.sdf
+
+# PCH?
+ipch
