@@ -1,0 +1,15 @@
+# Copied from https://github.com/springmeyer/hello-gyp/blob/master/appveyor.yml
+platform:
+  - x64
+  - x86
+
+configuration:
+  - Release
+
+artifacts:
+  - path: Release\crashfirefox.exe
+    name: crashfirefox
+  - path: x64\Release\crashfirefox.exe
+    name: crashfirefox64
+
+deploy: off
