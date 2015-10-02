@@ -36,7 +36,7 @@ int wmain(int argc, wchar_t* argv[])
         PROCESSENTRY32 pe = {
             sizeof(pe)
         };
-        for (bool ok = Process32First(snapshot, &pe); ok; ok = Process32Next(snapshot, &pe)) {
+        for (BOOL ok = Process32First(snapshot, &pe); ok; ok = Process32Next(snapshot, &pe)) {
             fwprintf(stderr, L"Checking process %d, \"%s\"\n", pe.th32ProcessID, pe.szExeFile);
             if (0 == wcscmp(pe.szExeFile, appname)) {
                 pid = pe.th32ProcessID;
