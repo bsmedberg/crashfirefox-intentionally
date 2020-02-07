@@ -56,10 +56,11 @@ int wmain(int argc, wchar_t* argv[])
         return 1;
     }
 
-    // Create a thread that starts at 0x0 and should immediately crash
-    HANDLE hThread = CreateRemoteThread(targetProc, NULL, 0, 0, 0, 0, 0);
+    // Create a thread that starts at DebugBreak and should immediately crash
+    auto debugBreak = GetProcAddress(GetModuleHandle(L"kernel32.dll"), "DebugBreak");
+    HANDLE hThread = CreateRemoteThread(targetProc, NULL, 0, (LPTHREAD_START_ROUTINE)debugBreak, 0, 0, 0);
     if (NULL == hThread) {
-        fwprintf(stderr, L"Could not create remote thread.\n");
+        fwprintf(stderr, L"Could not create remote thread. Error: %X\n", GetLastError());
         CloseHandle(targetProc);
         return 1;
     }
